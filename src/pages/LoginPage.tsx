@@ -66,23 +66,17 @@ export default function LoginPage() {
             <div className="space-y-4">
               <div className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium text-muted-foreground">
                 <DoorOpen className="h-3.5 w-3.5" />
-                PARAS Frontend
+                PARAS - Sistem Peminjaman Ruangan Kampus
               </div>
+              <p className="max-w-xl text-sm text-muted-foreground">
+                Akses PARAS dengan akun kampus Anda.
+              </p>
               <h1 className="max-w-xl text-4xl font-semibold leading-tight">
-                Sistem peminjaman ruangan dengan login berbasis role.
+                Pinjam Ruangan Jadi Lebih Mudah
               </h1>
               <p className="max-w-lg text-sm text-muted-foreground">
-                Masuk menggunakan akun backend Anda. Hak akses otomatis disesuaikan untuk role <span className="font-medium">User</span> atau <span className="font-medium">Admin</span>.
+                Masuk dengan NRP untuk mulai mengajukan peminjaman atau melihat ketersediaan ruangan kampus.
               </p>
-            </div>
-
-            <div className="space-y-3 text-sm text-muted-foreground">
-              <div className="rounded-xl border bg-background/70 p-3">
-                API: <span className="font-medium text-foreground">{import.meta.env.VITE_API_BASE_URL ?? "http://localhost:5238"}</span>
-              </div>
-              <div className="rounded-xl border bg-background/70 p-3">
-                Endpoint login: <span className="font-medium text-foreground">POST /auth/login</span>
-              </div>
             </div>
           </CardContent>
         </Card>

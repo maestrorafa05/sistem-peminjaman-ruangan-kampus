@@ -93,10 +93,6 @@ export function AppShell() {
                   <div className="text-muted-foreground">Role: {user?.roles.join(", ") || "-"}</div>
                 </div>
 
-                <div className="text-xs text-muted-foreground">
-                  Backend: <span className="font-medium">{import.meta.env.VITE_API_BASE_URL ?? "http://localhost:5238"}</span>
-                </div>
-
                 <Button variant="outline" className="w-full justify-start" onClick={onLogout}>
                   <LogOut className="mr-2 h-4 w-4" />
                   Keluar
