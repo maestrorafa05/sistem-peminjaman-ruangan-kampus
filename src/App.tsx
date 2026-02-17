@@ -1,23 +1,48 @@
-import './App.css'
+import { Navigate, Route, Routes } from "react-router-dom";
 
-const title = 'PARAS'
+import { RequireAuth } from "@/components/auth/RequireAuth";
+import { AppShell } from "@/layout/AppShell";
+import DashboardPage from "@/pages/DashboardPage";
+import AvailabilityPage from "@/pages/AvailabilityPage";
+import LoginPage from "@/pages/LoginPage";
+import { ForbiddenPage } from "@/pages/ForbiddenPage";
 
-function App() {
+import { RoomsPage } from "@/pages/RoomsPage";
+import { LoansPage } from "@/pages/LoansPage";
+import { AdminPage } from "@/pages/AdminPage";
+
+import { LoanDetailPage } from "@/pages/LoanDetailPage";
+import { NotFoundPage } from "@/pages/NotFoundPage";
+
+export default function App() {
   return (
-    <div className="app">
-      <aside className="sidebar">
-        <h1 className="title">{title}</h1>
-        <ul className="menu">
-          <li><a href="#">Beranda</a></li>
-          <li><a href="#">Peminjaman Ruangan</a></li>
-          <li><a href="#">Daftar Ruangan</a></li>
-        </ul>
-        <footer className="sidebar-footer">
-          <p>Copyright 2026 @ maestrorafa05</p>
-        </footer>
-      </aside>
-    </div>
-  )
-}
+    <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/forbidden" element={<ForbiddenPage />} />
 
-export default App
+      <Route
+        element={(
+          <RequireAuth>
+            <AppShell />
+          </RequireAuth>
+        )}
+      >
+        <Route path="/" element={<DashboardPage />} />
+        <Route path="/rooms" element={<RoomsPage />} />
+        <Route path="/availability" element={<AvailabilityPage />} />
+        <Route path="/loans" element={<LoansPage />} />
+        <Route path="/loans/:id" element={<LoanDetailPage />} />
+        <Route
+          path="/admin"
+          element={(
+            <RequireAuth roles={["Admin"]}>
+              <AdminPage />
+            </RequireAuth>
+          )}
+        />
+        <Route path="/home" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+    </Routes>
+  );
+}
